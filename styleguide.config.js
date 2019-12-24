@@ -16,6 +16,6 @@ module.exports = {
   title: "PoseNet React",
   styleguideDir: "dist-docs",
   moduleAliases: {
-    "posenet-react": path.resolve(__dirname, "src")
+    "react-posenet": path.resolve(__dirname, "src")
   }
 }
