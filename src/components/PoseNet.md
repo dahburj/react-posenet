@@ -1,27 +1,27 @@
 #### PoseNet
 
 ```jsx
-import PoseNet from "posenet-react";
+import { useState } from "react";
+import PoseNet from "react-posenet";
 
-const inferenceConfig = {
-  decodingMethod: "single-person"
-};
+const [posesString, setPosesString] = useState([]);
 
-const modelConfig = {
-  architecture: "MobileNetV1",
-  multiplier: 0.5,
-  quantBytes: 1
-};
-
-<PoseNet inferenceConfig={inferenceConfig} />;
-// <PoseNet modelConfig={modelConfig} inferenceConfig={inferenceConfig} />;
+<>
+  <PoseNet
+    inferenceConfig={{ decodingMethod: "single-person" }}
+    onEstimate={poses => {
+      setPosesString(JSON.stringify(poses));
+    }}
+  />
+  <p>{posesString}</p>
+</>;
 ```
 
-#### PoseNet with image prop
+<!-- #### PoseNet with image prop
 
-<!-- ```jsx
+````jsx
 import { useState } from "react";
-import PoseNet from "posenet-react";
+import PoseNet from "react-posenet";
 
 function getVideo() {
   const src = "https://i.imgur.com/EjsdjeQ.mp4";
@@ -36,10 +36,5 @@ function getVideo() {
 
 const [video] = useState(getVideo());
 
-// /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? (
-//   <p>This example does not support mobile device</p>
-// ) : (
-//   <></>
-// );
 <PoseNet image={video} />;
-``` -->
+```` -->
