@@ -1,5 +1,4 @@
 import React from "react"
-import ErrorMessage from "./ErrorMessage"
 
 export default function({ name, target }) {
   if (!target) {
@@ -9,7 +8,8 @@ export default function({ name, target }) {
     return (
       <>
         <p>{`There was an error while loading ${name}`}</p>
-        <ErrorMessage error={target} />
+        <font color="red">{target.message}</font>
+        <font color="red">{target.stack}</font>
       </>
     )
   }

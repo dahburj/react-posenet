@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
+import to from "await-to-js"
 import Loading from "./Loading"
 import useLoadPoseNet from "../hooks/useLoadPoseNet"
 import {
@@ -43,9 +44,15 @@ export default function PoseNet({
       return
     }
     async function setupCamera() {
-      const stream = await navigator.mediaDevices.getUserMedia(
-        getMediaStreamConstraints({ frameRate, facingMode })
+      const [err, stream] = await to(
+        navigator.mediaDevices.getUserMedia(
+          getMediaStreamConstraints({ frameRate, facingMode })
+        )
       )
+      if (err) {
+        setImage(err)
+        return
+      }
       const video = videoRef.current
       video.srcObject = stream
       video.onloadedmetadata = () => {
