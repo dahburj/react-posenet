@@ -91,20 +91,22 @@ export default function PoseNet({
       <Loading name="model" target={net} />
       <Loading name="input" target={image} />
       <font color="red">{errorMessage}</font>
-      <video
-        playsInline
-        ref={videoRef}
-        style={{ width: "0", height: "0" }}
-        width={width}
-        height={height}
-      />
-      <canvas
-        ref={canvasRef}
-        id={id}
-        className={className}
-        width={width}
-        height={height}
-      />
+      <div>
+        <video
+          playsInline
+          ref={videoRef}
+          style={{ width: "0", height: "0" }}
+          width={width}
+          height={height}
+        />
+        <canvas
+          ref={canvasRef}
+          id={id}
+          className={className}
+          width={width}
+          height={height}
+        />
+      </div>
     </>
   )
 }
