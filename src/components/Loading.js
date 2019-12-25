@@ -9,7 +9,6 @@ export default function({ name, target }) {
       <>
         <p>{`There was an error while loading ${name}`}</p>
         <font color="red">{target.message}</font>
-        <font color="red">{target.stack}</font>
       </>
     )
   }
