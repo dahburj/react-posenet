@@ -76,7 +76,7 @@ export default function PoseNet({
         ctx.drawImage(image, 0, 0, width, height)
         const currentTime = new Date()
         const poses = await net.estimatePoses(image, inferenceConfigRef.current)
-        onEstimateRef.current(poses, currentTime, ctx)
+        onEstimateRef.current(poses, currentTime, canvasRef.current)
         poses.forEach(({ keypoints }) => drawKeypoints({ ctx, keypoints }))
       } catch (err) {
         clearInterval(intervalID)

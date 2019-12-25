@@ -17,7 +17,8 @@ const [time, setTime] = useState();
       inputResolution: { width: 600, height: 500 },
       quantBytes: 4
     }}
-    onEstimate={(poses, time, ctx) => {
+    onEstimate={(poses, time, canvas) => {
+      const ctx = canvas.getContext("2d");
       ctx.font = "20px Verdana";
       ctx.fillText(time, 0, 250);
       setTime(time.toString());
