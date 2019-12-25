@@ -5,14 +5,26 @@ import { useState } from "react";
 import PoseNet from "react-posenet";
 
 const [posesString, setPosesString] = useState([]);
+const [time, setTime] = useState();
 
 <>
   <PoseNet
+    frameRate={1}
     inferenceConfig={{ decodingMethod: "single-person" }}
-    onEstimate={poses => {
+    modelConfig={{
+      architecture: "ResNet50",
+      outputStride: 16,
+      inputResolution: { width: 600, height: 500 },
+      quantBytes: 4
+    }}
+    onEstimate={(poses, time, ctx) => {
+      ctx.font = "20px Verdana";
+      ctx.fillText(time, 0, 250);
+      setTime(time.toString());
       setPosesString(JSON.stringify(poses));
     }}
   />
+  <p>{time}</p>
   <p>{posesString}</p>
 </>;
 ```
